@@ -26,6 +26,7 @@ import (
 	"fmt"
 	"strconv"
 
+	"github.com/justinneff/roman-numerals/convert"
 	"github.com/spf13/cobra"
 )
 
@@ -44,13 +45,14 @@ For example: 12 => XII`,
 		}
 		i, err := strconv.Atoi(args[0])
 		if err != nil || i < 0 || i > 3999 {
-			return errors.New("requires an integer between 1 and 3999")
+			return errors.New("requires an integer number between 1 and 3999")
 		}
 		input = i
 		return nil
 	},
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("toRoman called with", input)
+		result := convert.ToRoman(input)
+		fmt.Println(result)
 	},
 }
 
