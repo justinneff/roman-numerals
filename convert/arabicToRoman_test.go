@@ -5,6 +5,29 @@ import (
 	"testing"
 )
 
+func TestCanConvertToRoman(t *testing.T) {
+	var tests = []struct {
+		i    int
+		want bool
+	}{
+		{1, true},
+		{2000, true},
+		{3999, true},
+		{0, false},
+		{4000, false},
+	}
+
+	for _, tt := range tests {
+		testname := fmt.Sprint(tt.i)
+		t.Run(testname, func(t *testing.T) {
+			result := CanConvertToRoman(tt.i)
+			if result != tt.want {
+				t.Errorf("got %t, want %t", result, tt.want)
+			}
+		})
+	}
+}
+
 func TestToRoman(t *testing.T) {
 	var tests = []struct {
 		i    int
