@@ -44,8 +44,8 @@ For example: 12 => XII`,
 			return errors.New("requires a number argument")
 		}
 		i, err := strconv.Atoi(args[0])
-		if err != nil || i < 0 || i > 3999 {
-			return errors.New("requires an integer number between 1 and 3999")
+		if err != nil || !convert.CanConvertToRoman(i) {
+			return fmt.Errorf("requires an integer number between %d and %d", convert.MinArabic, convert.MaxArabic)
 		}
 		input = i
 		return nil

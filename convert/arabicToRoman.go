@@ -12,9 +12,18 @@ var factors = []ArabicToRomanFactor{
 	{1, []string{"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"}},
 }
 
-func ToRoman(input int) string {
+const (
+	MinArabic = 1
+	MaxArabic = 3999
+)
+
+func CanConvertToRoman(arabic int) bool {
+	return arabic >= MinArabic && arabic <= MaxArabic
+}
+
+func ToRoman(arabic int) string {
 	result := ""
-	remainder := input
+	remainder := arabic
 
 	for _, fact := range factors {
 		num := remainder / fact.Base
